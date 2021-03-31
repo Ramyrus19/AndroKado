@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AndroKado</string>
+    <string name="article_name">Pain au chocolat</string>
+    <string name="article_description">Une viennoiserie au beurre et au chocolat</string>
+    <string name="article_price">1.0 €</string>
+    <string name="imageAlt">Search</string>
+    <string name="toggleOn">Acheté</string>
+    <string name="toggleOff">Pas acheté</string>
+</resources>
