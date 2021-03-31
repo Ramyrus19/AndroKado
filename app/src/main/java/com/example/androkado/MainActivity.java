@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         tvName.setText(article.getNom());
 
         TextView tvPrice = findViewById(R.id.tv_price);
-        tvPrice.setText(article.getPrix().toString());
+        String prixAsString = article.getPrix() + "€";
+        tvPrice.setText(prixAsString);
 
         TextView tvDescription = findViewById(R.id.tv_description);
         tvDescription.setText(article.getDescription());
