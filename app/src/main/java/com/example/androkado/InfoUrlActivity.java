@@ -10,18 +10,23 @@ import android.widget.TextView;
 import com.example.androkado.bo.Article;
 
 public class InfoUrlActivity extends AppCompatActivity {
-    Article article;
-    TextView tv;
+    private Article article;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_url);
-        //retrieve the intent and set the extra as value of the textview
+        //retrieve the intent and the text view
+        tv = findViewById(R.id.tv_url);
         Intent intent = getIntent();
         article = intent.getParcelableExtra("article");
-        tv = findViewById(R.id.tv_url);
-        tv.setText(article.getUrl());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //set the extra as value of the textview
+        tv.setText(article.getUrl());
+    }
 }

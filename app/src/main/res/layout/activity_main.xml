@@ -44,7 +44,6 @@
         app:layout_constraintRight_toRightOf="parent"
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:numStars="5"
-        android:rating="4.5"
         android:stepSize="0.1"
         />
 
@@ -62,7 +61,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="4dp"
         android:layout_marginEnd="4dp"
-        android:onClick="onSearch"
+        android:onClick="onSearchClick"
         />
 
     <ToggleButton
