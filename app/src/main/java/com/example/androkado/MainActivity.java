@@ -27,13 +27,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        article = new Article("Pain au chocolat", 2.15, "Une viennoiserie au beurre salé et au chocolat", 3.5f, "http://painauchocolat.fr", true);
+        Intent intent = getIntent();
+        article = intent.getParcelableExtra("article");
         //show article in view
         tb = findViewById(R.id.tb_status);
         tvName = findViewById(R.id.tv_name);
         tvPrice = findViewById(R.id.tv_price);
         tvDescription = findViewById(R.id.tv_description);
-        rb = findViewById(R.id.rb_review);
+        rb = findViewById(R.id.rb_note);
 
     }
 
