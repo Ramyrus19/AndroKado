@@ -5,11 +5,11 @@
         android:id="@+id/action_edit"
         android:icon="@android:drawable/ic_menu_edit"
         android:title="Modifier"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_send"
         android:icon="@android:drawable/ic_menu_send"
         android:title="Envoyer"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 </menu>

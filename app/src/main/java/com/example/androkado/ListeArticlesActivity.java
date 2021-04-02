@@ -1,15 +1,19 @@
 package com.example.androkado;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.androkado.adapter.ListeArticlesAdapter;
@@ -75,7 +79,9 @@ public class ListeArticlesActivity extends AppCompatActivity implements ListeArt
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Toast.makeText(this, "Configuration", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Configuration", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, ConfigurationActivity.class);
+                startActivity(intent);
                 return true;
 
             case R.id.action_add:

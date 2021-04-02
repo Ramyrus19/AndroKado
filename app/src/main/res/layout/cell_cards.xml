@@ -14,6 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -21,7 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:selectableItemBackground"
-            android:padding="20dp"
             android:fontFamily="sans-serif"
             android:textColor="#333"
             android:textSize="18sp" />
@@ -35,6 +35,7 @@
             style="@style/Widget.AppCompat.RatingBar"
             android:numStars="5"
             android:stepSize="0.1"
+            android:isIndicator="false"
             />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
