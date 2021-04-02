@@ -1,12 +1,15 @@
 package com.example.androkado;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.androkado.adapter.ListeArticlesAdapter;
@@ -44,10 +47,12 @@ public class ListeArticlesActivity extends AppCompatActivity implements ListeArt
         articles.add(fraisier);
         articles.add(framboisier);
 
-        Log.v("RAMO", "here");
-
         mAdapter = new ListeArticlesAdapter(articles, this);
         mRecyclerView.setAdapter(mAdapter);
+
+        //initialize action bar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
     }
 
@@ -58,5 +63,28 @@ public class ListeArticlesActivity extends AppCompatActivity implements ListeArt
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("article", article);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Toast.makeText(this, "Configuration", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.action_add:
+                Toast.makeText(this, "Ajouter article", Toast.LENGTH_SHORT).show();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }

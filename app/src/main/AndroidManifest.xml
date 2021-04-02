@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroKado">
-        <activity android:name=".ListeArticlesActivity">
+        <activity
+            android:name=".ListeArticlesActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,7 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".InfoUrlActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            >
 
         </activity>
     </application>

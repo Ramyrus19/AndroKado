@@ -1,11 +1,14 @@
 package com.example.androkado;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -36,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         tvDescription = findViewById(R.id.tv_description);
         rb = findViewById(R.id.rb_note);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.details_toolbar);
+        setSupportActionBar(myToolbar);
     }
 
     @Override
@@ -66,5 +71,28 @@ public class MainActivity extends AppCompatActivity {
         boolean state = tb.isChecked();
         article.setEtat(state);
         //Log.v("ArticleState", article.getEtat().toString());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.details_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_edit:
+                Toast.makeText(this, "Modifier", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.action_send:
+                Toast.makeText(this, "Envoyer", Toast.LENGTH_SHORT).show();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }

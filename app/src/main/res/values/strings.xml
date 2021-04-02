@@ -2,5 +2,5 @@
     <string name="app_name">AndroKado</string>
     <string name="imageAlt">Search</string>
     <string name="toggleOn">Acheté</string>
-    <string name="toggleOff">Pas acheté</string>
+    <string name="toggleOff">À acheter</string>
 </resources>

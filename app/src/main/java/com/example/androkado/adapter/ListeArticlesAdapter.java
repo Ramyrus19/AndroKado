@@ -21,18 +21,14 @@ public class ListeArticlesAdapter extends RecyclerView.Adapter<ListeArticlesAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        public TextView tvName;
-        public TextView tvPrice;
-        public TextView tvDescription;
+        public TextView cardView;
         public RatingBar rbNote;
 
         ViewHolder(View v)
         {
             super(v);
-            tvName = v.findViewById(R.id.tv_name);
-            tvPrice = v.findViewById(R.id.tv_price);
-            tvDescription = v.findViewById(R.id.tv_description);
-            rbNote = v.findViewById(R.id.rb_note);
+            rbNote = v.findViewById(R.id.rb_note_cardview);
+            cardView = v.findViewById(R.id.tv_article_cardview);
 
             v.setOnClickListener(this);
         }
@@ -56,16 +52,13 @@ public class ListeArticlesAdapter extends RecyclerView.Adapter<ListeArticlesAdap
     @Override
     public ListeArticlesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.line_design, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_cards, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tvName.setText(listeArticles.get(position).getNom());
-        String prixAsString = listeArticles.get(position).getPrix() + " €";
-        holder.tvPrice.setText(prixAsString);
-        holder.tvDescription.setText(listeArticles.get(position).getDescription());
+        holder.cardView.setText(listeArticles.get(position).getNom());
         holder.rbNote.setRating(listeArticles.get(position).getNote());
     }
 
