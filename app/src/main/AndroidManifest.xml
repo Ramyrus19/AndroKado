@@ -10,9 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroKado">
         <activity
+            android:name=".CreateArticleActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity
             android:name=".ConfigurationActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            ></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ListeArticlesActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -25,7 +27,7 @@
         <activity android:name=".InfoUrlActivity" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>
