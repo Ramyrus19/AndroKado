@@ -62,7 +62,7 @@ public class ArticleDao {
         return article;
     }
 
-    public List<Article> get()
+    public List<Article> get(boolean isTrie)
     {
         List<Article> resultat = new ArrayList<>();
 
@@ -73,7 +73,7 @@ public class ArticleDao {
                 null,
                 null,
                 null,
-                null);
+                isTrie ? ArticleContract.COL_PRIX : null);
 
         while(cursor.moveToNext())
         {
@@ -92,8 +92,6 @@ public class ArticleDao {
 
     public boolean update(Article article)
     {
-        Log.i("RUS","Entrée dans update avec " + article.toString());
-
         ContentValues cv = new ContentValues();
         cv.put(ArticleContract.COL_NOM,article.getNom());
         cv.put(ArticleContract.COL_PRIX,article.getPrix());
@@ -102,13 +100,21 @@ public class ArticleDao {
         cv.put(ArticleContract.COL_URL,article.getUrl());
         cv.put(ArticleContract.COL_ETAT,article.getEtat());
 
-
-        return db.update(ArticleContract.TABLE_NAME,cv,ArticleContract.COL_ID + "=?",new String[]{String.valueOf(article.getId())})>0;
+        return db.update(
+                ArticleContract.TABLE_NAME,
+                cv,
+                ArticleContract.COL_ID + "=?",
+                new String[]{String.valueOf(article.getId())})
+                >0;
     }
 
     public boolean delete(Article article)
     {
-        return db.delete(ArticleContract.TABLE_NAME,ArticleContract.COL_ID + " =?",new String[]{String.valueOf(article.getId())})>0;
+        return db.delete(
+                ArticleContract.TABLE_NAME,
+                ArticleContract.COL_ID + " =?",
+                new String[]{String.valueOf(article.getId())})
+                >0;
     }
 
 }

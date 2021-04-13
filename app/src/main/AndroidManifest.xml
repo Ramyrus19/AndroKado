@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroKado">
         <activity
-            android:name=".CreateArticleActivity"
+            android:name=".FormulaireActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".ConfigurationActivity"

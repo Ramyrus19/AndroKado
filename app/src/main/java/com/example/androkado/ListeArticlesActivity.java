@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,8 +30,6 @@ public class ListeArticlesActivity extends AppCompatActivity implements ListeArt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_articles);
 
-        ArticleDao dao = new ArticleDao(this);
-
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_articles);
         mRecyclerView.setHasFixedSize(true);
 
@@ -43,15 +42,24 @@ public class ListeArticlesActivity extends AppCompatActivity implements ListeArt
 //        Article fraisier = new Article("Gateau aux fraises", 2.50, "Un gateau fruité au fraises sucrées et crème vanille", 4.5f, "http://fraisier.fr", true);
 //        Article framboisier = new Article("Gateau aux framboises", 2.30, "Une tarte au framboises délicieuses et crème vanille", 5.0f, "http://framboisier.fr", false);
 
-        List<Article> articles = dao.get();
-
-        mAdapter = new ListeArticlesAdapter(articles, this);
-        mRecyclerView.setAdapter(mAdapter);
-
         //initialize action bar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ArticleDao dao = new ArticleDao(this);
+
+        //retrieve the config from filters
+        SharedPreferences sp = getSharedPreferences(ConfigurationActivity.CONF_FILE, MODE_PRIVATE);
+        boolean isTrie = sp.getBoolean(ConfigurationActivity.CLE_TRI, false);
+
+        //connect the article with the recycler view
+        mAdapter = new ListeArticlesAdapter(dao.get(isTrie), this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -71,16 +79,17 @@ public class ListeArticlesActivity extends AppCompatActivity implements ListeArt
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.action_settings:
                 //Toast.makeText(this, "Configuration", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ConfigurationActivity.class);
+                intent = new Intent(this, ConfigurationActivity.class);
                 startActivity(intent);
                 return true;
 
             case R.id.action_add:
                 //Toast.makeText(this, "Ajouter article", Toast.LENGTH_SHORT).show();
-                intent = new Intent(this, CreateArticleActivity.class);
+                intent = new Intent(this, FormulaireActivity.class);
                 startActivity(intent);
                 return true;
 

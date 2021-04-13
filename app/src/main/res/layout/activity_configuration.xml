@@ -61,6 +61,15 @@
             app:layout_constraintRight_toRightOf="@id/sw_price"
             />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enregistrer"
+            app:layout_constraintTop_toBottomOf="@id/et_price"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="applyFilters"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

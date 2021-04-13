@@ -5,7 +5,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,24 +23,24 @@ public class MainActivity extends AppCompatActivity {
     TextView tvPrice;
     TextView tvDescription;
     RatingBar rb;
-    private ToggleButton tb;
+    ToggleButton tb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.details_toolbar);
+        setSupportActionBar(myToolbar);
+
         Intent intent = getIntent();
         article = intent.getParcelableExtra("article");
         //show article in view
-        tb = findViewById(R.id.tb_status);
         tvName = findViewById(R.id.tv_name);
         tvPrice = findViewById(R.id.tv_price);
         tvDescription = findViewById(R.id.tv_description);
         rb = findViewById(R.id.rb_note);
-
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.details_toolbar);
-        setSupportActionBar(myToolbar);
+        tb = findViewById(R.id.tb_status);
     }
 
     @Override
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_edit:
                 //Toast.makeText(this, "Modifier", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, CreateArticleActivity.class);
+                Intent intent = new Intent(this, FormulaireActivity.class);
                 intent.putExtra("article", article);
                 startActivity(intent);
                 return true;
