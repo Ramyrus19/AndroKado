@@ -53,6 +53,11 @@ public class ArticleDao {
             article = new Article();
             article.setId(cursor.getInt(cursor.getColumnIndex(ArticleContract.COL_ID.trim())));
             article.setNom(cursor.getString(cursor.getColumnIndex(ArticleContract.COL_NOM.trim())));
+            article.setPrix(cursor.getDouble(cursor.getColumnIndex(ArticleContract.COL_PRIX.trim())));
+            article.setDescription(cursor.getString(cursor.getColumnIndex(ArticleContract.COL_DESCRIPTION.trim())));
+            article.setNote(cursor.getFloat(cursor.getColumnIndex(ArticleContract.COL_NOTE.trim())));
+            article.setUrl(cursor.getString(cursor.getColumnIndex(ArticleContract.COL_URL.trim())));
+            article.setEtat(cursor.getInt(cursor.getColumnIndex(ArticleContract.COL_ETAT.trim())) > 0);
         }
         return article;
     }
@@ -83,6 +88,27 @@ public class ArticleDao {
             resultat.add(article);
         }
         return resultat;
+    }
+
+    public boolean update(Article article)
+    {
+        Log.i("RUS","Entrée dans update avec " + article.toString());
+
+        ContentValues cv = new ContentValues();
+        cv.put(ArticleContract.COL_NOM,article.getNom());
+        cv.put(ArticleContract.COL_PRIX,article.getPrix());
+        cv.put(ArticleContract.COL_DESCRIPTION,article.getDescription());
+        cv.put(ArticleContract.COL_NOTE,article.getNote());
+        cv.put(ArticleContract.COL_URL,article.getUrl());
+        cv.put(ArticleContract.COL_ETAT,article.getEtat());
+
+
+        return db.update(ArticleContract.TABLE_NAME,cv,ArticleContract.COL_ID + "=?",new String[]{String.valueOf(article.getId())})>0;
+    }
+
+    public boolean delete(Article article)
+    {
+        return db.delete(ArticleContract.TABLE_NAME,ArticleContract.COL_ID + " =?",new String[]{String.valueOf(article.getId())})>0;
     }
 
 }

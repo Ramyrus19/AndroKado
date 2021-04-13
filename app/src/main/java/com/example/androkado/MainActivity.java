@@ -16,6 +16,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.androkado.bo.Article;
+import com.example.androkado.dal.ArticleDao;
 
 public class MainActivity extends AppCompatActivity {
     private Article article;
@@ -46,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        ArticleDao dao = new ArticleDao(this);
+        article = dao.get(article.getId());
+
         tvName.setText(article.getNom());
         String prixAsString = article.getPrix() + " €";
         tvPrice.setText(prixAsString);
@@ -83,7 +88,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_edit:
-                Toast.makeText(this, "Modifier", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Modifier", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, CreateArticleActivity.class);
+                intent.putExtra("article", article);
+                startActivity(intent);
                 return true;
 
             case R.id.action_send:
