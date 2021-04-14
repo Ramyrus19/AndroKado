@@ -85,16 +85,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.action_edit:
                 //Toast.makeText(this, "Modifier", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, FormulaireActivity.class);
+                intent = new Intent(this, FormulaireActivity.class);
                 intent.putExtra("article", article);
                 startActivity(intent);
                 return true;
 
             case R.id.action_send:
-                Toast.makeText(this, "Envoyer", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Envoyer", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, ListeContactsActivity.class);
+                intent.putExtra("article", article);
+                startActivity(intent);
                 return true;
 
             default:

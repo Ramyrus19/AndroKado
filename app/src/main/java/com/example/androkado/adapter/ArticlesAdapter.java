@@ -14,7 +14,7 @@ import com.example.androkado.bo.Article;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListeArticlesAdapter extends RecyclerView.Adapter<ListeArticlesAdapter.ViewHolder>
+public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHolder>
 {
     private ArrayList<Article> listeArticles;
     private OnClicSurUnItem<Article> action;
@@ -43,14 +43,14 @@ public class ListeArticlesAdapter extends RecyclerView.Adapter<ListeArticlesAdap
         void onInteraction(T article);
     }
 
-    public ListeArticlesAdapter(List<Article> myDataset, OnClicSurUnItem<Article> activite)
+    public ArticlesAdapter(List<Article> myDataset, OnClicSurUnItem<Article> activite)
     {
         listeArticles = (ArrayList<Article>)myDataset;
         action = activite;
     }
 
     @Override
-    public ListeArticlesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    public ArticlesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_cards, parent, false);
         return new ViewHolder(v);

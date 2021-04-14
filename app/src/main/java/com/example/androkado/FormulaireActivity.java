@@ -68,16 +68,12 @@ public class FormulaireActivity extends AppCompatActivity {
         article.setUrl(etUrl.getText().toString());
         article.setEtat(tbEtat.isChecked());
 
-
-
         ArticleDao dao = new ArticleDao(this);
         if (article.getId() == 0){
             getSupportActionBar().setTitle("Créer un article");
             dao.insert(article);
         }else{
-            //TODO : retrieve toolbar and change text in Modifier article
             getSupportActionBar().setTitle("Modifier article");
-
             dao.update(article);
         }
         finish();

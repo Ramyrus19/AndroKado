@@ -12,14 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.androkado.adapter.ListeArticlesAdapter;
+import com.example.androkado.adapter.ArticlesAdapter;
 import com.example.androkado.bo.Article;
 import com.example.androkado.dal.ArticleDao;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ListeArticlesActivity extends AppCompatActivity implements ListeArticlesAdapter.OnClicSurUnItem<Article> {
+public class ListeArticlesActivity extends AppCompatActivity implements ArticlesAdapter.OnClicSurUnItem<Article> {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -58,7 +55,7 @@ public class ListeArticlesActivity extends AppCompatActivity implements ListeArt
         boolean isTrie = sp.getBoolean(ConfigurationActivity.CLE_TRI, false);
 
         //connect the article with the recycler view
-        mAdapter = new ListeArticlesAdapter(dao.get(isTrie), this);
+        mAdapter = new ArticlesAdapter(dao.get(isTrie), this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
