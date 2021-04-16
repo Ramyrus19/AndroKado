@@ -6,11 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".InfoUrlActivity">
 
-    <TextView
-        android:id="@+id/tv_url"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/wv_article"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

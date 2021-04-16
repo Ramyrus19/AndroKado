@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
-    private ArrayList<Contact> listeContacts;
+    private List<Contact> listeContacts;
     private ContactsAdapter.OnClicSurUnItem<Contact> action;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener

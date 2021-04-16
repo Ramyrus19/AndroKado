@@ -37,7 +37,6 @@ public class ListeContactsActivity extends AppCompatActivity implements Contacts
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_contacts);
         mRecyclerView.setHasFixedSize(true);
-
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -50,7 +49,6 @@ public class ListeContactsActivity extends AppCompatActivity implements Contacts
     @Override
     public void onInteraction(Contact contact) {
         this.contact = contact;
-
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},14550);
     }
 
@@ -70,13 +68,17 @@ public class ListeContactsActivity extends AppCompatActivity implements Contacts
             case 14550: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+contact.getTelephone()));
-                    intent.putExtra("sms_body", "Voici un cadeau qui me ferait plaisir : "+ article.getNom());
-                    startActivity(intent);
+                    sendSms(contact.getTelephone(), article.getNom());
                 }
             }
             break;
         }
+    }
+
+    private void sendSms(String phoneNumber, String articleName) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+ phoneNumber));
+        intent.putExtra("sms_body", "Voici un cadeau qui me ferait plaisir : "+ articleName);
+        startActivity(intent);
     }
 
     private void bindContactsList() {
@@ -92,11 +94,13 @@ public class ListeContactsActivity extends AppCompatActivity implements Contacts
         {
             String id = contacts.getString(contacts.getColumnIndex(ContactsContract.Contacts._ID));
             String name = contacts.getString(contacts.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+            String hasPhone = contacts.getString(contacts.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+
             Contact friend = new Contact();
             friend.setId(Integer.parseInt(id));
             friend.setNom(name);
-            String hasPhone = contacts.getString(contacts.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
-            if (hasPhone.equals("1")){
+
+            if ("1".equals(hasPhone)){
                 Cursor phones = cr.query( ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                         null,
                         ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
@@ -106,6 +110,7 @@ public class ListeContactsActivity extends AppCompatActivity implements Contacts
                     String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                     friend.setTelephone(phoneNumber);
                 }
+                phones.close();
             }
             contactsList.add(friend);
         }
